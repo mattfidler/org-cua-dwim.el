@@ -1,0 +1,6 @@
+#+TITLE: org-cua-dwim.el
+#+AUTHOR: Matthew L. Fidler
+* Introduction
+The org-mode package and CUA-mode package have conflicting keys.  The
+org-cua-dwim package attempts to address this problem by allowing
+org-mode calls when appropriate and cua-mode calls when appropriate.  
