@@ -6,9 +6,9 @@
 ;; Maintainer: Matthew L. Fidler
 ;; Created: Thu Dec  8 15:06:13 2011 (-0600)
 ;; Version: 0.4
-;; Last-Updated: Sun Dec 11 00:21:48 2011 (-0600)
+;; Last-Updated: Sun Dec 11 00:54:53 2011 (-0600)
 ;;           By: Matthew L. Fidler
-;;     Update #: 186
+;;     Update #: 187
 ;; URL: 
 ;; Keywords: org-mode cua-mode
 ;; Compatibility: 
@@ -93,19 +93,15 @@ shift-selection-mode is available."
       (set (make-local-variable 'org-cua-dwim-was-move) t)
       (set (make-local-variable 'cua--last-region-shifted) t)
       (set (make-local-variable 'cua--explicit-region-start) nil)
-      ;;(setq cua--prefix-override-timer nil)
       (set (make-local-variable 'shift-select-mode) t)
-      (set (make-local-variable 'cua-mode) nil)
-      )
+      (set (make-local-variable 'cua-mode) nil))
     (when (and is-org-mode (not this-command-keys-shift-translated)
                org-cua-dwim-was-move)
       (when org-cua-dwim-debug
         (message "Turn Off shift-select-mode"))
       (set (make-local-variable 'shift-select-mode) nil)
       (set (make-local-variable 'cua-mode) t)
-      (set (make-local-variable 'org-cua-dwim-was-move) nil)
-      ;;(setq cua--prefix-override-timer nil)
-      )
+      (set (make-local-variable 'org-cua-dwim-was-move) nil))
     (when do-it
       ad-do-it)
     (when mark-active
@@ -122,7 +118,6 @@ shift-selection-mode is available."
     (set (make-local-variable 'org-cua-dwim-was-move) nil)
     (cua--pre-command-handler))
   ad-do-it)
-
 
 (ad-deactivate 'handle-shift-selection)
 (ad-activate   'handle-shift-selection)
