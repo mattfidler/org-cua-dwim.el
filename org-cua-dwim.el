@@ -6,26 +6,33 @@
 ;; Maintainer: Matthew L. Fidler
 ;; Created: Thu Dec  8 15:06:13 2011 (-0600)
 ;; Version: 0.5
-;; Last-Updated: Sun Dec 11 10:10:45 2011 (-0600)
+;; Last-Updated: Thu Feb  2 23:30:32 2012 (-0600)
 ;;           By: Matthew L. Fidler
-;;     Update #: 215
+;;     Update #: 218
 ;; URL: 
 ;; Keywords: org-mode cua-mode
 ;; Compatibility: Emacs 23 
 ;; 
 ;; Features that might be required by this library:
 ;;
-;;   `help-fns'.
+;;   None
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
 ;; 
-;;  To use this, just install via elpa or (require 'org-cua-dwim)
+;;  To use this, just put in load path and then:
+;;
+;;  (require 'org-cua-dwim)
+;;  (org-cua-dwim-activate)
+;;  To activate, 
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Change Log:
+;; 02-Feb-2012    Matthew L. Fidler  
+;;    Last-Updated: Thu Feb  2 23:27:14 2012 (-0600) #216 (Matthew L. Fidler)
+;;    Turned off automatic activation.
 ;; 11-Dec-2011    Matthew L. Fidler  
 ;;    Last-Updated: Sun Dec 11 10:01:49 2011 (-0600) #212 (Matthew L. Fidler)
 ;;    Turned on Delete-Selection-mode whe shift-selection-mode is enabled
@@ -68,8 +75,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Code:
-
-
 ;;;###autoload
 (defun org-cua-dwim-turn-on-org-cua-mode-partial-support ()
   "This turns on org-mode cua-mode partial support; Assumes
@@ -83,8 +88,10 @@ shift-selection-mode is available."
   (set (make-local-variable 'org-cua-dwim-was-move) nil)
   (set (make-local-variable 'shift-select-mode) nil))
 
-;;;###autoload
-(add-hook 'org-mode-hook 'org-cua-dwim-turn-on-org-cua-mode-partial-support)
+;;;###autoload 
+(defun org-cua-dwim-activate ()
+  "Activate org-cwim-dwim"
+  (add-hook 'org-mode-hook 'org-cua-dwim-turn-on-org-cua-mode-partial-support))
 
 (defvar org-cua-dwim-was-move nil)
 (defvar org-cua-dwim-debug nil)
@@ -158,10 +165,7 @@ before runnind ant hen run the `cua--precommand-handler'"
 (org-cua-dwim-fix-cua-command "cua-set-mark")
 (org-cua-dwim-fix-cua-command "cua-paste-pop")
 
-
-
 (ad-activate 'handle-shift-selection)
-
 
 (provide 'org-cua-dwim)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
